@@ -1,0 +1,11 @@
+Cas Awa avec budget 50000 :
+PS C:\Users\HP\Downloads\depart> node depenses.js 
+Rapport de dépenses à compléter pour Awa
+Total des dépenses : 38300 FCFA
+Budget restant : 11700 FCFA
+Respect du budget : Oui
+Dépenses détaillées :
+  Transport : 12500 FCFA
+  Alimentation : 18300 FCFA
+  Loisirs : 7500 FCFA
+PS C:\Users\HP\Downloads\depart> 
