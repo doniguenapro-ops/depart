@@ -1,25 +1,60 @@
-const nom = 'Awa'; // Type : string
-const budget = 50000; // Type : number ; unité : FCFA
-const transportTexte = '12500'; // Type : string ; unité : FCFA
-const alimentationTexte = '18300'; // Type : string ; unité : FCFA
-const loisirsTexte = '7500'; // Type : string ; unité : FCFA
+// J06 — Bilan des dépenses
+// Type : number[] ; unité de chaque élément : FCFA.
+const depensesSemaine = [1500, 2500, 0, 4000, 1000, 2500, 3000];
 
-// TODO : convertissez les trois dépenses en nombres.
-const transport = Number(transportTexte);
-const alimentation = Number(alimentationTexte);
-const loisirs = Number(loisirsTexte);
+// TODO 1 : retourner le total en FCFA avec reduce.
+function calculerTotal(depenses) {
+  return depenses.reduce((total, montant) => total + montant, 0);
+}
+// TODO 2 : retourner la moyenne par jour ; 0 si le tableau est vide.
+function calculerMoyenne(depenses) {
+  if (depenses.length === 0) {
+    return 0;
+  }
 
-// TODO : calculez le total, le budget restant et budgetRespected.
-const total = transport + alimentation + loisirs;
-const budgetRestant = budget - total;
-const budgetRespected = budgetRestant >= 0;
+  return calculerTotal(depenses) / depenses.length;
+}
 
-// TODO : affichez le rapport uniquement avec des littéraux de gabarit.
-console.log(`Rapport de dépenses à compléter pour ${nom}`);
-console.log(`Total des dépenses : ${total} FCFA`);
-console.log(`Budget restant : ${budgetRestant} FCFA`);
-console.log(`Respect du budget : ${budgetRespected ? 'Oui' : 'Non'}`);
-console.log(`Dépenses détaillées :
-  Transport : ${transport} FCFA
-  Alimentation : ${alimentation} FCFA
-  Loisirs : ${loisirs} FCFA`);
+// TODO 3 : retourner les montants strictement supérieurs à 2000 FCFA.
+function filtrerGrossesDepenses(depenses) {
+  return depenses.filter(montant => montant > 2000);
+}
+
+// TODO 4 : retourner la plus grande dépense ; 0 si le tableau est vide.
+function trouverMaximum(depenses) {
+  if (depenses.length === 0) {
+    return 0;
+  }
+
+  return Math.max(...depenses);
+}
+
+// TODO 5 : créer une copie triée, puis afficher le rapport demandé.
+
+const total = calculerTotal(depensesSemaine);
+const moyenne = calculerMoyenne(depensesSemaine);
+const grossesDepenses = filtrerGrossesDepenses(depensesSemaine);
+const maximum = trouverMaximum(depensesSemaine);
+
+// Afficher le tableau avant le tri
+console.log("Avant le tri :", depensesSemaine);
+
+// Créer une copie triée numériquement
+const depensesTriees = [...depensesSemaine].sort((a, b) => a - b);
+
+// Afficher la copie triée, sans modifier le tableau original
+console.log("Après le tri :", depensesTriees);
+
+// total : number ; unité : FCFA
+// moyenne : number ; unité : FCFA/jour
+// maximum : number ; unité : FCFA
+
+console.log(`
+===== RAPPORT DES DÉPENSES =====
+Total : ${total} FCFA
+Moyenne par jour : ${moyenne} FCFA
+Dépenses > 2000 FCFA : ${grossesDepenses}
+Maximum : ${maximum} FCFA
+Copie triée : ${depensesTriees}
+===============================
+`);
